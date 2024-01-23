@@ -10,7 +10,7 @@ namespace ChessGame.Board
     {
         public int Rows { get; set; }
         public int Columns { get; set; }
-        public Piece[,]? Pieces { get; set; }
+        private Piece[,]? Pieces { get; set; }
         public GameBoard() { }
         public GameBoard(int rows, int columns)
         {
