@@ -4,7 +4,7 @@ namespace ChessGame.Board
     internal class Piece
     {
         public Position? Position { get; set; }
-        public Color Color { get; set; }
+        public Color Color { get; protected set; }
         public int MoveCount { get; protected set; }
         public GameBoard? Board { get; protected set; }
 
@@ -15,6 +15,11 @@ namespace ChessGame.Board
             Color = color;
             MoveCount = 0;
             Board = board;
+        }
+
+        public void IncrementMoveCount()
+        {
+            MoveCount++;
         }
     }
 }
