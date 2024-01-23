@@ -1,4 +1,5 @@
 ﻿using ChessGame.Board;
+using ChessGame.Board.BoardExceptions;
 using ChessGame.Chess;
 
 namespace ChessGame
@@ -7,11 +8,19 @@ namespace ChessGame
     {
         public static void Main(string[] args)
         {
-            GameBoard board = new GameBoard(8, 8);
+            try
+            {
+                GameBoard board = new GameBoard(8, 8);
 
-            board.PutPiece(new King(Color.Black, board), new Position(1, 0));
+                board.PutPiece(new King(Color.Black, board), new Position(1, 0));
+                board.PutPiece(new Tower(Color.Black, board), new Position(10, 0));
 
-            Screen.ShowScreen(board);
+                Screen.ShowScreen(board);
+            }
+            catch (BoardException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
