@@ -9,9 +9,9 @@ namespace ChessGame.Board
         public GameBoard? Board { get; protected set; }
 
         public Piece() { }
-        public Piece(Position? position, Color color, GameBoard? board)
+        public Piece(Color color, GameBoard? board)
         {
-            Position = position;
+            Position = null;
             Color = color;
             MoveCount = 0;
             Board = board;
