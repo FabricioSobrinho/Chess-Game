@@ -1,4 +1,6 @@
-﻿namespace ChessGame
+﻿using ChessGame.Board;
+
+namespace ChessGame
 {
     class Program
     {
