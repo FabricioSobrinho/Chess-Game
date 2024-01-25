@@ -19,12 +19,14 @@ namespace ChessGame
 
                     Console.WriteLine("Insert origin position");
                     Position originPos = Screen.ReadChessPosition().ToPosition();
-                    
+
+                    bool[,] possiblePositions = chess.Board.Piece(originPos).PossibleMoves(); 
+                    Screen.ShowScreen(chess.Board, possiblePositions);
+
                     Console.WriteLine("Insert final position");
                     Position finalPos = Screen.ReadChessPosition().ToPosition();
 
                     chess.ExecuteMove(originPos, finalPos);
-
                 }
             }
             catch (BoardException ex)
