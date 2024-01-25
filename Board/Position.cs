@@ -1,4 +1,6 @@
 ﻿
+using System.Data.Common;
+
 namespace ChessGame.Board
 {
     internal class Position
@@ -6,8 +8,13 @@ namespace ChessGame.Board
         public int Row { get; set; }
         public int Column { get; set; }
 
-        public Position() { }
         public Position(int row, int column)
+        {
+            Row = row;
+            Column = column;
+        }
+
+        public void SetValues(int row, int column)
         {
             Row = row;
             Column = column;
