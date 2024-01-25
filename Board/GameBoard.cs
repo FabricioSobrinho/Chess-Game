@@ -19,11 +19,16 @@ namespace ChessGame.Board
             Columns = columns;
             Pieces = new Piece[Rows, Columns];
         }
+        public Piece Piece(int row, int column)
+        {
+            return Pieces[row, column];
+        }
 
         public Piece Piece(Position position)
         {
             return Pieces[position.Row, position.Column];
         }
+
         public Piece ReturnPiece(int row, int column)
         {
             return Pieces[row, column];
@@ -60,7 +65,7 @@ namespace ChessGame.Board
 
         public bool ValidPosition(Position position)
         {
-            if (position.Row < 0 || position.Row > Rows || position.Column < 0 || position.Column > Columns)
+            if (position.Row < 0 || position.Row >= Rows || position.Column < 0 || position.Column >= Columns)
             {
                 return false;
             }
