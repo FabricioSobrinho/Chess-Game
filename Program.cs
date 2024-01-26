@@ -14,24 +14,37 @@ namespace ChessGame
 
                 while (!chess.FinishedMatch)
                 {
-                    Console.Clear();
-                    Screen.ShowScreen(chess.Board);
+                    try
+                    {
+                        Console.Clear();
+                        Screen.ShowScreen(chess.Board);
+                        Console.WriteLine(" ");
+                        Console.WriteLine($"Actual Player: {chess.ActualPlayer}");
+                        Console.WriteLine($"Actual Round: {chess.Round}");
+                        Console.WriteLine(" ");
 
-                    Console.WriteLine("Insert origin position");
-                    Position originPos = Screen.ReadChessPosition().ToPosition();
+                        Console.WriteLine("Insert origin position");
+                        Position originPos = Screen.ReadChessPosition().ToPosition();
+                        chess.ValidateOriginPosition(originPos);
 
-                    bool[,] possiblePositions = chess.Board.Piece(originPos).PossibleMoves(); 
-                    Screen.ShowScreen(chess.Board, possiblePositions);
+                        bool[,] possiblePositions = chess.Board.Piece(originPos).PossibleMoves();
+                        Screen.ShowScreen(chess.Board, possiblePositions);
 
-                    Console.WriteLine("Insert final position");
-                    Position finalPos = Screen.ReadChessPosition().ToPosition();
+                        Console.WriteLine("Insert final position");
+                        Position finalPos = Screen.ReadChessPosition().ToPosition();
 
-                    chess.ExecuteMove(originPos, finalPos);
+                        chess.PerformPlay(originPos, finalPos);
+                    }
+                    catch (BoardException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.ReadLine();
+                    }
                 }
             }
             catch (BoardException ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine(ex.Message);
             }
         }
     }
