@@ -48,21 +48,29 @@ namespace ChessGame.Chess
             }
         }
 
-        public void ValidateOriginPosition(Position position)
+        public void ValidateOriginPosition(Position originPosition)
         {
-            if (Board.Piece(position) == null)
+            if (Board.Piece(originPosition) == null)
             {
                 throw new BoardException("Didn't has any piece at the origin move place.");
             }
 
-            if (Board.Piece(position).Color != ActualPlayer)
+            if (Board.Piece(originPosition).Color != ActualPlayer)
             {
                 throw new BoardException("Ins't your turn.");
             }
 
-            if (!Board.Piece(position).HasPossibleMoves())
+            if (!Board.Piece(originPosition).HasPossibleMoves())
             {
                 throw new BoardException("Didn't has any moves for this piece.");
+            }
+        }
+
+        public void ValidateFinalPosition(Position originPosition, Position finalPosition)
+        {
+            if (!Board.Piece(originPosition).CanMoveTo(finalPosition))
+            {
+                throw new BoardException("This piece can't be moved to this location.");
             }
         }
 

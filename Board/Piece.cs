@@ -38,6 +38,10 @@ namespace ChessGame.Board
 
             return false;
         }
+        public bool CanMoveTo(Position position)
+        {
+            return PossibleMoves()[position.Row, position.Column];
+        }
         public abstract bool[,] PossibleMoves();
     }
 }
