@@ -32,6 +32,7 @@ namespace ChessGame
 
                         Console.WriteLine("Insert final position");
                         Position finalPos = Screen.ReadChessPosition().ToPosition();
+                        chess.ValidateFinalPosition(originPos, finalPos);
 
                         chess.PerformPlay(originPos, finalPos);
                     }
