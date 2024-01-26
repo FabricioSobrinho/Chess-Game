@@ -21,7 +21,23 @@ namespace ChessGame.Board
         {
             MoveCount++;
         }
+        public bool HasPossibleMoves()
+        {
+            bool[,] matrix = PossibleMoves();
 
+            for (int i = 0; i < Board.Rows; i++)
+            {
+                for (int j = 0; j < Board.Columns; j++)
+                {
+                    if (matrix[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
         public abstract bool[,] PossibleMoves();
     }
 }

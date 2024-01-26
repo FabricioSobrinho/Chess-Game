@@ -1,12 +1,13 @@
 ﻿using ChessGame.Board;
+using ChessGame.Board.BoardExceptions;
 
 namespace ChessGame.Chess
 {
     internal class ChessMatch
     {
         public GameBoard Board { get; private set; }
-        public int Round { get; set; }
-        public Color ActualPlayer { get; set; }
+        public int Round { get; private set; }
+        public Color ActualPlayer { get; private set; }
         public bool FinishedMatch { get; private set; }
 
         public ChessMatch()
@@ -25,6 +26,44 @@ namespace ChessGame.Chess
             Piece capturedPiece = Board.RemovePiece(finalPos);
 
             Board.PutPiece(piece, finalPos);
+        }
+
+        public void PerformPlay(Position initialPosition, Position finalPosition)
+        {
+            ExecuteMove(initialPosition, finalPosition);
+            Round++;
+
+            ChangePlayerRound();
+        }
+
+        public void ChangePlayerRound()
+        {
+            if (Round % 2 == 0)
+            {
+                ActualPlayer = Color.Black;
+            } 
+            else
+            {
+                ActualPlayer = Color.White;
+            }
+        }
+
+        public void ValidateOriginPosition(Position position)
+        {
+            if (Board.Piece(position) == null)
+            {
+                throw new BoardException("Didn't has any piece at the origin move place.");
+            }
+
+            if (Board.Piece(position).Color != ActualPlayer)
+            {
+                throw new BoardException("Ins't your turn.");
+            }
+
+            if (!Board.Piece(position).HasPossibleMoves())
+            {
+                throw new BoardException("Didn't has any moves for this piece.");
+            }
         }
 
         public void InitiatePieces()
