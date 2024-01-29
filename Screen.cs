@@ -8,6 +8,7 @@ namespace ChessGame
     {
         public static void StartMatch(ChessMatch chessMatch)
         {
+            Console.Clear();
             ShowScreen(chessMatch.Board);
             Console.WriteLine(" ");
 
