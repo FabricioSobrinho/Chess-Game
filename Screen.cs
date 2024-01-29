@@ -1,10 +1,46 @@
 ﻿using ChessGame.Board;
 using ChessGame.Chess;
+using System.Collections.Generic;
 
 namespace ChessGame
 {
     internal class Screen
     {
+        public static void StartMatch(ChessMatch chessMatch)
+        {
+            ShowScreen(chessMatch.Board);
+            Console.WriteLine(" ");
+
+            ShowCapturedPieces(chessMatch);
+            Console.WriteLine(" ");
+
+            Console.WriteLine($"Actual Player: {chessMatch.ActualPlayer}");
+            Console.WriteLine($"Actual Round: {chessMatch.Round}");
+            Console.WriteLine(" ");
+        }
+
+        public static void ShowCapturedPieces(ChessMatch chessMatch)
+        {
+            Console.WriteLine("Captured Pieces: ");
+            Console.WriteLine("Whites: ");
+            ShowSet(chessMatch.CapturedPieces(Color.White));
+            Console.WriteLine();
+
+            Console.WriteLine("Blacks: ");
+            ShowSet(chessMatch.CapturedPieces(Color.Black));
+        }
+
+        public static void ShowSet(HashSet<Piece> set)
+        {
+            Console.Write("[");
+
+            foreach (Piece piece in set)
+            {
+                Console.Write(piece + " ");
+            }
+
+            Console.Write("]");
+        }
         public static void ShowScreen(GameBoard board)
         {
             for (int i = 0; i < board.Rows; i++)
@@ -32,10 +68,10 @@ namespace ChessGame
                     if (possiblePositions[i, j])
                     {
                         Console.BackgroundColor = changedColor;
-                    } 
+                    }
                     else
                     {
-                        Console.BackgroundColor = originColor; 
+                        Console.BackgroundColor = originColor;
                     }
 
                     ShowPiece(board.Piece(i, j));
