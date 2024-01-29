@@ -18,6 +18,11 @@ namespace ChessGame
             Console.WriteLine($"Actual Player: {chessMatch.ActualPlayer}");
             Console.WriteLine($"Actual Round: {chessMatch.Round}");
             Console.WriteLine(" ");
+
+            if (chessMatch.Check)
+            {
+                Console.WriteLine("You're in Check!");
+            }
         }
 
         public static void ShowCapturedPieces(ChessMatch chessMatch)
