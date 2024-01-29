@@ -55,7 +55,8 @@ namespace ChessGame.Chess
             if (IsInCheck(Rival(ActualPlayer)))
             {
                 Check = true;
-            } else
+            }
+            else
             {
                 Check = false;
             }
@@ -157,7 +158,8 @@ namespace ChessGame.Chess
             if (color == Color.White)
             {
                 return Color.Black;
-            }  else
+            }
+            else
             {
                 return Color.White;
             }
@@ -170,9 +172,9 @@ namespace ChessGame.Chess
                 if (inGamePiece is King)
                 {
                     return inGamePiece;
-                } 
+                }
             }
-                return null;
+            return null;
         }
 
         private bool IsInCheck(Color color)
@@ -188,7 +190,7 @@ namespace ChessGame.Chess
             {
                 bool[,] possibleMoves = inGamePiece.PossibleMoves();
 
-                if (possibleMoves[king.Position.Row, king.Position.Column]) 
+                if (possibleMoves[king.Position.Row, king.Position.Column])
                 {
                     return true;
                 }
