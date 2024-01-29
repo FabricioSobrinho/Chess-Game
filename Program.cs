@@ -16,12 +16,15 @@ namespace ChessGame
                 {
                     try
                     {
+                        Console.Clear();
                         Screen.StartMatch(chess);
 
                         Console.WriteLine("Insert origin position");
                         Position originPos = Screen.ReadChessPosition().ToPosition();
                         chess.ValidateOriginPosition(originPos);
 
+
+                        Console.Clear();
                         bool[,] possiblePositions = chess.Board.Piece(originPos).PossibleMoves();
                         Screen.ShowScreen(chess.Board, possiblePositions);
 
