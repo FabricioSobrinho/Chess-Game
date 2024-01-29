@@ -16,12 +16,7 @@ namespace ChessGame
                 {
                     try
                     {
-                        Console.Clear();
-                        Screen.ShowScreen(chess.Board);
-                        Console.WriteLine(" ");
-                        Console.WriteLine($"Actual Player: {chess.ActualPlayer}");
-                        Console.WriteLine($"Actual Round: {chess.Round}");
-                        Console.WriteLine(" ");
+                        Screen.StartMatch(chess);
 
                         Console.WriteLine("Insert origin position");
                         Position originPos = Screen.ReadChessPosition().ToPosition();
