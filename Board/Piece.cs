@@ -21,6 +21,10 @@ namespace ChessGame.Board
         {
             MoveCount++;
         }
+        public void DecrementMoveCount()
+        {
+            MoveCount--;
+        }
         public bool HasPossibleMoves()
         {
             bool[,] matrix = PossibleMoves();
