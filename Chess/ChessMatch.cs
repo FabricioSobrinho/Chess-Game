@@ -1,6 +1,7 @@
 ﻿using ChessGame.Board;
 using ChessGame.Board.BoardExceptions;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 
 namespace ChessGame.Chess
 {
@@ -61,9 +62,17 @@ namespace ChessGame.Chess
                 Check = false;
             }
 
-            Round++;
+            if (IsInCheckMate(Rival(ActualPlayer)))
+            {
+                FinishedMatch = true;
+            }
+            else
+            {
 
-            ChangePlayerRound();
+                Round++;
+
+                ChangePlayerRound();
+            }
         }
 
         public void RemadeMove(Position initialPosition, Position finalPosition, Piece capturedPiece)
@@ -195,8 +204,42 @@ namespace ChessGame.Chess
                     return true;
                 }
             }
-
             return false;
+        }
+
+        public bool IsInCheckMate(Color color)
+        {
+            if (!IsInCheck(color))
+            {
+                return false;
+            }
+
+            foreach (Piece inGamePiece in InGamePieces(color))
+            {
+                bool[,] possibleMoves = inGamePiece.PossibleMoves();
+                for (int i = 0; i < Board.Rows; i++)
+                {
+                    for (int j = 0; j < Board.Columns; j++)
+                    {
+                        if (possibleMoves[i, j])
+                        {
+                            Position origin = inGamePiece.Position;
+                            Position destiny = new Position(i, j);
+
+                            Piece capturedPiece = ExecuteMove(origin, destiny);
+
+                            bool isInCheck = IsInCheck(color);
+                            RemadeMove(origin, destiny, capturedPiece);
+
+                            if (!isInCheck)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
         public void InitiatePieces()
         {
