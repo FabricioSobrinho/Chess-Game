@@ -76,7 +76,7 @@ namespace ChessGame.Chess
         }
         public override string ToString()
         {
-            return "T";
+            return "H";
         }
     }
 }
