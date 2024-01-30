@@ -40,6 +40,9 @@ namespace ChessGame
                         Console.ReadLine();
                     }
                 }
+
+                Console.Clear();
+                Screen.StartMatch(chess);
             }
             catch (BoardException ex)
             {

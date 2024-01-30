@@ -18,10 +18,17 @@ namespace ChessGame
             Console.WriteLine($"Actual Player: {chessMatch.ActualPlayer}");
             Console.WriteLine($"Actual Round: {chessMatch.Round}");
             Console.WriteLine(" ");
-
-            if (chessMatch.Check)
+            if (!chessMatch.FinishedMatch)
             {
-                Console.WriteLine("You're in Check!");
+                if (chessMatch.Check)
+                {
+                    Console.WriteLine("You're in Check!");
+                }
+            } 
+            else
+            {
+                Console.WriteLine($"Check-Mate");
+                Console.WriteLine($"Winner winner chicken dinner for {chessMatch.ActualPlayer}");
             }
         }
 
