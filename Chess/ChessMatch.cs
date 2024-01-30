@@ -120,6 +120,17 @@ namespace ChessGame.Chess
                 tower.DecrementMoveCount();
                 Board.PutPiece(tower, towerOrigin);
             }
+
+            // special move little castling
+            if (piece is King && finalPosition.Column == initialPosition.Column - 2)
+            {
+                Position towerOrigin = new Position(initialPosition.Row, initialPosition.Column - 4);
+                Position towerDestiny = new Position(initialPosition.Row, initialPosition.Column - 1);
+
+                Piece tower = Board.RemovePiece(towerDestiny);
+                tower.DecrementMoveCount();
+                Board.PutPiece(tower, towerOrigin);
+            }
         }
 
         public void ChangePlayerRound()
