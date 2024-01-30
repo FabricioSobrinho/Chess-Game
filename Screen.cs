@@ -6,7 +6,7 @@ namespace ChessGame
 {
     internal class Screen
     {
-        public static void StartMatch(ChessMatch chessMatch)
+        public static void ShowBoard(ChessMatch chessMatch)
         {
             Console.Clear();
             ShowScreen(chessMatch.Board);

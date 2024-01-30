@@ -49,7 +49,7 @@ namespace ChessGame.Chess
 
             if (IsInCheck(ActualPlayer))
             {
-                RemadeMove(initialPosition, finalPosition, capturedPiece);
+                UndoMove(initialPosition, finalPosition, capturedPiece);
                 throw new BoardException("You can't put yourself in check.");
             }
 
@@ -75,7 +75,7 @@ namespace ChessGame.Chess
             }
         }
 
-        public void RemadeMove(Position initialPosition, Position finalPosition, Piece capturedPiece)
+        public void UndoMove(Position initialPosition, Position finalPosition, Piece capturedPiece)
         {
             Piece piece = Board.RemovePiece(finalPosition);
             piece.DecrementMoveCount();
@@ -229,7 +229,7 @@ namespace ChessGame.Chess
                             Piece capturedPiece = ExecuteMove(origin, destiny);
 
                             bool isInCheck = IsInCheck(color);
-                            RemadeMove(origin, destiny, capturedPiece);
+                            UndoMove(origin, destiny, capturedPiece);
 
                             if (!isInCheck)
                             {

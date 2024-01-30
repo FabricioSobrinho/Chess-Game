@@ -17,7 +17,7 @@ namespace ChessGame
                     try
                     {
                         Console.Clear();
-                        Screen.StartMatch(chess);
+                        Screen.ShowBoard(chess);
 
                         Console.WriteLine("Insert origin position");
                         Position originPos = Screen.ReadChessPosition().ToPosition();
@@ -42,7 +42,7 @@ namespace ChessGame
                 }
 
                 Console.Clear();
-                Screen.StartMatch(chess);
+                Screen.ShowBoard(chess);
             }
             catch (BoardException ex)
             {
